@@ -9,33 +9,27 @@
   <script src="http://unpkg.com/react-dom@latest/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    // we don't write the html directly
-    // start by making span
+    /* we don't write the html directly
+    so, we don't have to find the html */
     const root = document.getElementById("root");
-    function Title() {
+    function App() {
+      /*  useState는 ReactDOM.render(<App />, root);를 다시 써줄 필요없이
+      자동으로 리렌더링해주기 때문에 쓰인다. */
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+        /*  This includes all these
+            counter = counter + 1;
+            ReactDOM.render(<App />, root);  */
+      };
       return (
-        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-          Hello I'm a title
-        </h3>
+        <div>
+          <h3>Total clicks: {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
       );
     }
-    const Button = () => (
-      <button
-        style={{
-          backgroundColor: "tomato",
-        }}
-        onClick={() => console.log("im clicked")}
-      >
-        Click me
-      </button>
-    );
-    const Container = () => (
-      <div>
-        <Title />
-        <Button />
-      </div>
-    );
     // render의 의미: React element를 가지고 HTML로 만들어 배치, 사용자에게 보여준다.
-    ReactDOM.render(<Container />, root);
+    ReactDOM.render(<App />, root);
   </script>
 </html>
