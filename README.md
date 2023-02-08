@@ -1,1 +1,1 @@
-# react-for-begginers not using create-react-app
+# react-for-begginers without CRA
